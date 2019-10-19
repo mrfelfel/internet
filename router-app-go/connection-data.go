@@ -5,6 +5,7 @@ package approuter
 // ConnectionData can use by any type users itself or delegate to other users to act as the owner!
 // Each user in each device need unique connection to another party.
 type ConnectionData struct {
+	SessionID         [16]byte
 	ConnectionID      [16]byte // Connection UUID, First bit indicate guest or registered user
 	Status            uint8    // 0:close 1:open 2:rate-limited 3:closing 4:opening 5:
 	Weight            uint8    // 16 queue for priority weight of the connections exist.
