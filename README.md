@@ -17,7 +17,7 @@ Don't think about old IPv4 or IPv6 idea protocols like UDP or TCP you don't need
     - 1ms latency with more than 100-Gbps links to exiting XP! 1ms =~ 200km in fiber links theory!
 
 # Switch
-It is all about improve [layer 2 of OSI](https://en.wikipedia.org/wiki/Data_link_layer)! The our introduce [switch design](https://en.wikipedia.org/wiki/Stateless_protocol) isn't like Ethernet switch that is stateful and it doesn't need to store MAC address and route frames in [stateless manner](https://en.wikipedia.org/wiki/Connectionless_communication). Read more about switch protocol structure in [Golang](./switch-go/packet-structure.go) or [C](./switch-c/packet-structure.c)
+It is all about improve [layer 2 of OSI](https://en.wikipedia.org/wiki/Data_link_layer)! The our introduce [switch design](https://en.wikipedia.org/wiki/Stateless_protocol) isn't like Ethernet switch that is stateful and it doesn't need to store MAC address and route frames in [stateless manner](https://en.wikipedia.org/wiki/Connectionless_communication). Read more about switch protocol structure in [Golang](./switch-go/frame-structure.go) or [C](./switch-c/frame-structure.c)
 
 # Route
 
