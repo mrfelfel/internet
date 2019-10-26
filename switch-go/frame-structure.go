@@ -10,7 +10,7 @@ package frameswitch
 // Each switch device in any location of link can be wire or wireless with any Energy||Frequency specs (e.g. Fiber, WiFi, LAN, Bluetooth, ...)
 type frameStructure struct {
 	NextHop        uint8  // Indicate switch port number use on next switch device!
-	TotalHop       uint8  // Total hop numbers and also indicate payload location (Payload = rawFrame[frame.TotalHop+3:])! 255 use for multicast farmes to all ports!
+	TotalHop       uint8  // Total hop numbers and also indicate payload location (Payload = rawFrame[frame.TotalHop+3:])!
 	NextHeader     uint8  // Indicate upper layer protocol equal EtherType!
 	Switch0PortNum uint8  // Source Port Number.
 	Switch1PortNum uint8  // Any other than Switch0PortNum can be Destination Port Number.

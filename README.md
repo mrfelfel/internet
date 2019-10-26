@@ -16,10 +16,10 @@ Don't think about old IPv4 or IPv6 idea protocols like UDP or TCP you don't need
     - New XP can register by others only if it has proper distance from near XPs. We suggest more than 200Km far
     - 1ms latency with more than 100-Gbps links to exiting XP! 1ms =~ 200km in fiber links theory!
 
-# Switch
-It is all about improve [layer 2 of OSI](https://en.wikipedia.org/wiki/Data_link_layer)! The our introduce [switch design](https://en.wikipedia.org/wiki/Stateless_protocol) isn't like Ethernet switch that is stateful and it doesn't need to store MAC address and route frames in [stateless manner](https://en.wikipedia.org/wiki/Connectionless_communication). Read more about switch protocol structure in [Golang](./switch-go/frame-structure.go) or [C](./switch-c/frame-structure.c)
+## Switch
+It is all about improve [layer 2 of OSI](https://en.wikipedia.org/wiki/Data_link_layer)! The introduced [switch design](https://en.wikipedia.org/wiki/Stateless_protocol) isn't like Ethernet switch that must store MAC address state in each switch and will switch frames in [stateless manner](https://en.wikipedia.org/wiki/Connectionless_communication). Read more about switch protocol structure in [Golang](./switch-go/frame-structure.go) or [C](./switch-c/frame-structure.c)
 
-# Route
+## Route
 
 ## Universe Internet Protocol (UIP)
 We combine OSI layer 3 to layer 6 requirements as Network + Transport + Session + Presentation protocols to have one protocol and remove all overhead data. This protocol needs in the IoE era (Internet of Everything) for connecting things, people, data, ...!
@@ -59,14 +59,14 @@ The [Mobile UIP](https://en.wikipedia.org/wiki/Mobile_IP) allows for location-in
 - Each 16bit range UIP (as max apps can lease UIPs) has a public key that generates in negotiated by XP and App router(owner of IP).
 - Each UIP packet encrypts in OS and App layer by paired EncryptionKey before sending. This way no IP can steal by others!
 
-# Security
+## Security
 
 ### Attack
 Routers in XP or OS or App level can request from (report to) each other to block attackers or take action about it! If XP routers don't respect reported node or router whole XP can block by other XP. AI must add to router apps to detect infected or bad software XP router that doesn't respect rules!
 
-# etc.
+## etc.
 
-## Related Projects!
+### Related Projects!
 - https://code.google.com/p/phantom/
 - https://github.com/cjdelisle/cjdns
 - https://libremesh.org/
@@ -76,12 +76,13 @@ Routers in XP or OS or App level can request from (report to) each other to bloc
 - https://github.com/openspace42/LibreFibre
 - https://github.com/loki-project
 - https://sudoroom.org/wiki/Mesh
+- https://www.opencompute.org/
 
-## Some resource
+### Some resource
 - https://github.com/gdamdam/awesome-decentralized-web
 - https://book.systemsapproach.org
 
-## Some idea get from these protocols:
+### Some idea get from these protocols:
 - [QUIC](https://en.wikipedia.org/wiki/QUIC)
 - https://github.com/alecthomas/go_serialization_benchmarks
 - https://tools.ietf.org/html/rfc4506

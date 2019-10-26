@@ -22,11 +22,30 @@ func (f *Frame) CheckFrame() (err error) {
 }
 
 // SwitchFrame detect and send frame!
+// All switch logic is in this function!!
 func (f *Frame) SwitchFrame(incomePort uint8) {
-	if f.GetTotalHop() == 255 {
-		BroadcastFrame(f, incomePort)
+	// The reasons of use SetSwitchPortNum method here:
+	// - UnicastFrame : To be sure receive port is same with declaration one in frame we replace it always!
+	// - BroadcastFrame : To improve performance, previous switch just send frame without declare port, we must declare it now!
+	// - Rule&Security : To be sure physical network port is same on sender and receiver switch, we must set it again here!
+	f.SetSwitchPortNum(f.GetNextHop(), incomePort)
+
+	f.IncrementNextHop()
+
+	if f.GetTotalHop() == 0 {
+		// BroadcastFrame use to broadcast a frame to all ports!
+		// Due to frame must have at least 2 hop so we use unused TotalHop==0 for multicast farmes to all ports!
+		// So both TotalHop==0x00 & TotalHop==0xff have 256 SwitchPortNum space in frame header!
+		// Frame must have all Switch0PortNum to Switch254PortNum with 0 byte data in header otherwise frame payload rewrite by switch!
+		var i uint8
+		for i = 0; i <= 255; i++ {
+			// Send frame to desire port queue
+			// send(incomeFrame, i)
+		}
 	} else {
-		UnicastFrame(f, incomePort)
+		// UnicastFrame will send frame to the specific port
+		// Send frame to desire port queue
+		// send(f, f.GetNextHop())
 	}
 }
 
@@ -41,6 +60,8 @@ func (f *Frame) IncrementNextHop() {
 }
 
 // GetTotalHop will return TotalHop in memory safe way!
+// BEWARE! To maximize usage of total hop number we assume 0x00 as 1 ... 0xff as 256 hop number!
+// Min TotalHop number is 2 so we use 0 for broadcasting frame and 1 for ...!
 func (f *Frame) GetTotalHop() (TotalHop uint8) {
 	return uint8((*f)[1])
 }
@@ -62,5 +83,5 @@ func (f *Frame) SetSwitchPortNum(i uint8, SwitchPortNum uint8) {
 
 // GetPayload will return Payload in memory safe way!
 func (f *Frame) GetPayload() (Payload []byte) {
-	return (*f)[f.GetTotalHop()+3:]
+	return (*f)[f.GetTotalHop()+4:]
 }
